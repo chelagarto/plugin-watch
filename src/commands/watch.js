@@ -102,7 +102,7 @@ class Watch extends TwilioClientCommand {
             date: this.formatDateTime(e.dateUpdated),
             type: `message[${this.directionInOrOut(e, 'in', 'out')}]`,
             code: e.status,
-            text: this.flags['no-pii'] ? e.body.length + ' chars' : e.body,
+            text: `FROM: ${this.redactPhone(e.from)}, TO: ${this.redactPhone(e.to)}=`+  e.body,
             raw: e
           }))
         )
